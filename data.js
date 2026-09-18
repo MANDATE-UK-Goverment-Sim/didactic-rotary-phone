@@ -93,18 +93,72 @@
     const previous=pickWinner('cprev'+id);
     let prediction=pickWinner('cpred'+id); if(hash(id+'keep')%100<62) prediction=previous;
     councils.push({id,name,region:regions[i%regions.length],previous,prediction,result:null,councillorChange:0,seats:32+(hash(id)%49)});
-  }
+ const historyYears = [2010, 2015, 2017, 2019, 2024, 2026];
 
-  const historyYears=[1918,1922,1924,1929,1931,1935,1945,1950,1951,1955,1959,1964,1966,1970,1974,1979,1983,1987,1992,1997,2001,2005,2010,2015,2017,2019,2024,2026];
-  const history = {};
-  parties.forEach(p=>{
-    history[p.id] = historyYears.map((year,idx)=>{
-      const base = p.id==='lab'?220:p.id==='con'?250:p.id==='ld'?45:p.id==='ref'?15:p.id==='grn'?6:p.id==='uip'?8:25;
-      const wave = Math.round(Math.sin((idx+(hash(p.id)%7))*0.85)*(p.id==='lab'||p.id==='con'?85:18));
-      const jitter = hash(p.id+year)%55;
-      const val = Math.max(0, Math.min(520, base+wave+jitter));
-      return {year,seats:val};
-    });
+const history = {
+  lab: [
+    {year:2010,seats:201},
+    {year:2015,seats:232},
+    {year:2017,seats:275},
+    {year:2019,seats:221},
+    {year:2024,seats:348},
+    {year:2026,seats:149}
+  ],
+
+  con: [
+    {year:2010,seats:298},
+    {year:2015,seats:331},
+    {year:2017,seats:305},
+    {year:2019,seats:376},
+    {year:2024,seats:161},
+    {year:2026,seats:188}
+  ],
+
+  ld: [
+    {year:2010,seats:57},
+    {year:2015,seats:21},
+    {year:2017,seats:29},
+    {year:2019,seats:34},
+    {year:2024,seats:52},
+    {year:2026,seats:53}
+  ],
+
+  ref: [
+    {year:2010,seats:0},
+    {year:2015,seats:1},
+    {year:2017,seats:0},
+    {year:2019,seats:2},
+    {year:2024,seats:18},
+    {year:2026,seats:12}
+  ],
+
+  grn: [
+    {year:2010,seats:1},
+    {year:2015,seats:4},
+    {year:2017,seats:6},
+    {year:2019,seats:11},
+    {year:2024,seats:27},
+    {year:2026,seats:98}
+  ],
+
+  uip: [
+    {year:2010,seats:2},
+    {year:2015,seats:7},
+    {year:2017,seats:12},
+    {year:2019,seats:25},
+    {year:2024,seats:36},
+    {year:2026,seats:142}
+  ],
+
+  oth: [
+    {year:2010,seats:91},
+    {year:2015,seats:54},
+    {year:2017,seats:23},
+    {year:2019,seats:31},
+    {year:2024,seats:8},
+    {year:2026,seats:8}
+  ]
+};
   });
 
   window.USHER_DATA={parties,regions,constituencies,councils,historyYears,history};

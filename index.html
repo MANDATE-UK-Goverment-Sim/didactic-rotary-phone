@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>USHER Election Night 2026</title><link rel="icon" href="data:,"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div id="app" class="presentation-shell hex-bg">
+  <header class="presentation-header">
+    <div class="logo-lockup"><img src="logo.svg" alt="USHER Election Night 2026"><div class="micro-slogan">People.<br>Places.<br>Perspective.</div></div>
+    <div class="header-right"><div id="modeBadge" class="badge">General Election</div><div class="clockbox"><small id="todayLabel">Election Night</small><strong id="liveClock">21:45:28</strong><span class="live-word">LIVE</span></div><div class="countdown-pill"><small>Exit Poll In</small><strong id="headerCountdown">00:14:32</strong></div></div>
+  </header>
+  <nav class="presentation-nav"><span class="active">Overview</span><span>Constituencies</span><span>Results</span><span>Map</span><span>Analysis</span><span>History</span><span style="margin-left:auto">Live updates</span></nav>
+  <main class="stage-wrap">
+    <section id="slide-opening" class="slide active"><div class="opening-slide"><div class="opening-inner"><img src="logo.svg" alt=""><h1>POLLS CLOSE AT 22:00</h1><p>Live declarations, projections, councils and analysis throughout the night</p><div id="openingCountdown" class="opening-countdown">00:14:32</div></div></div></section>
+    <section id="slide-countdown" class="slide"><div class="opening-slide"><div class="opening-inner"><div class="kicker">The decision begins in</div><div id="bigCountdown" class="opening-countdown">00:14:32</div><h1>EXIT POLL AT 22:00</h1><p>650 constituencies · 326 seats for a majority</p></div></div></section>
+    <section id="slide-exitpoll" class="slide"><div class="card exitpoll-card"><div class="exit-headline"><div class="exit-copy"><div class="kicker">Exit Poll</div><h2 id="exitHeadline" class="display">HUNG PARLIAMENT</h2><p id="exitSub">No party secures an overall majority</p></div><div id="partyStrip" class="party-strip"></div><div class="majority-box"><strong>650</strong><small>SEATS</small><div class="line"></div><strong style="font-size:26px">326</strong><small>FOR A MAJORITY</small></div></div><div class="exit-bottom"><div class="mini-map-card card"><h3>USHER MAP</h3><div id="exitMap" class="map-grid"></div></div><div class="analysis-card card"><h3>Exit poll analysis</h3><div class="analysis-summary"><div class="analysis-stat"><small>Largest party</small><strong id="largestParty">—</strong></div><div class="analysis-stat"><small>Majority status</small><strong id="majorityStatus">—</strong></div><div class="analysis-stat"><small>Seats declared</small><strong id="exitDeclared">0 / 650</strong></div><div class="analysis-stat"><small>Councils declared</small><strong id="exitCouncils">0 / 128</strong></div></div><div class="callout">The exit poll is a projection. Actual declarations replace projected information through the night.</div></div></div></div></section>
+    <section id="slide-national" class="slide"><div class="national-layout"><div class="card national-map"><div class="kicker">National picture</div><h2 class="display" style="font-size:48px;margin:6px 0 15px">650 Constituencies</h2><div id="nationalMap" class="map-grid" style="height:530px"></div></div><div class="national-right"><div class="card seat-totals-card"><div class="kicker">Declared seats</div><div id="seatTotals" class="seat-totals"></div></div><div class="card latest-card"><div class="kicker">Latest declarations</div><h3 style="font-size:27px;margin:7px 0 15px">Results as they arrive</h3><div id="latestDeclarations" class="latest-list"></div></div></div></div></section>
+    <section id="slide-seat" class="slide"><div id="seatFocus" class="card focus-card"></div></section>
+    <section id="slide-council" class="slide"><div id="councilFocus" class="council-grid"></div></section>
+    <section id="slide-history" class="slide"><div id="historyCard" class="card history-card"></div></section>
+    <section id="slide-results" class="slide"><div id="resultsCard" class="card results-card"></div></section>
+    <section id="slide-winner" class="slide"><div id="winnerCard" class="winner-slide"></div></section>
+    <section id="slide-break" class="slide"><div class="opening-slide"><div class="opening-inner"><img src="logo.svg" alt=""><h1>LIVE COVERAGE CONTINUES SHORTLY</h1><p>Declarations and analysis resume after the break</p></div></div></section>
+    <div class="ticker"><div class="ticker-live">LIVE</div><div id="tickerTrack" class="ticker-track"></div></div>
+  </main>
+  <footer class="presentation-footer"><span>USHER · ELECTION NIGHT 2026</span><span>People / Places / Perspective</span><span>Live presentation output</span></footer>
+</div>
+<script src="data.js"></script><script src="core.js"></script><script src="presentation.js"></script>
+</body></html>

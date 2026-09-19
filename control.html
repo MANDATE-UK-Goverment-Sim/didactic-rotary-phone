@@ -1,31 +1,773 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>USHER Production Control</title><link rel="icon" href="data:,"><link rel="stylesheet" href="styles.css"></head>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>
+  USHER Production Control
+</title>
+
+<link
+  rel="icon"
+  href="data:,"
+>
+
+<link
+  rel="stylesheet"
+  href="styles.css"
+>
+
+</head>
+
 <body>
+
 <div class="control-shell">
-  <aside class="sidebar hex-bg"><div class="brand"><img src="logo.svg" alt="USHER Election Night"></div><button class="nav-btn active" data-tab="dashboard">▦ &nbsp; Dashboard</button><button class="nav-btn" data-tab="general">▣ &nbsp; General Election</button><button class="nav-btn" data-tab="councils">♟ &nbsp; Councils</button><button class="nav-btn" data-tab="exitpoll">▥ &nbsp; Exit Poll</button><button class="nav-btn" data-tab="presentation">▰ &nbsp; Presentation</button><button class="nav-btn" data-tab="ticker">▤ &nbsp; Ticker</button><button class="nav-btn" data-tab="history">◷ &nbsp; History</button><button class="nav-btn" data-tab="system">⚙ &nbsp; System</button><div class="sidebar-spacer"></div><div class="system-mini">People<br>Places<br>Perspective<br><br><span class="ok">● Live state connected</span><br>v5.0 fresh rebuild</div></aside>
-  <div class="control-main">
-    <header class="control-top"><div class="logo-lockup"><img src="logo.svg" alt=""><div class="micro-slogan">Production<br>Control</div></div><div class="sync-status"><span class="sync-dot"></span>LIVE SYNC</div><div class="top-actions"><button id="previewBtn" class="btn">Preview</button><button id="goLiveBtn" class="btn danger">Go Live</button><button id="saveBtn" class="btn">Save</button><button id="resetBtn" class="btn">Reset</button></div></header>
-    <main class="control-content">
-      <section id="tab-dashboard" class="tab-pane active">
-        <div id="summaryGrid" class="summary-grid"></div>
-        <div class="dashboard-grid">
-          <div class="control-card preview-card"><header><span>● On Air &nbsp; Live Presentation Preview</span><span class="muted">16:9 output</span></header><div class="body"><div id="previewFrame" class="preview-frame"><iframe src="index.html?embed=1" title="Live presentation preview"></iframe></div></div></div>
-          <div class="control-card"><header>Exit Poll · Edit</header><div id="dashboardPoll" class="body"></div></div>
-          <div class="control-card"><header>Constituency Declaration</header><div id="dashboardSeat" class="body"></div></div>
-          <div class="control-card"><header>Council Declaration</header><div id="dashboardCouncil" class="body"></div></div>
-          <div class="control-card"><header>Quick Actions</header><div class="body" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><button class="btn" data-slide="break">Take to Break</button><button class="btn" data-slide="opening">Opening</button><button class="btn" data-slide="national">National Map</button><button class="btn" data-slide="results">Results</button><button class="btn" data-slide="history">History</button><button class="btn danger" data-slide="winner">Winner Call</button></div></div>
-          <div class="control-card ticker-editor"><header><span>Ticker Editor</span><button id="addTickerDash" class="btn soft">+ Add Item</button></header><div id="tickerDash" class="body"></div></div>
-          <div class="control-card presentation-manager"><header>Presentation Manager</header><div id="managerDash" class="body"></div></div>
-        </div>
-      </section>
-      <section id="tab-general" class="tab-pane"><div class="wide-grid"><div class="control-card"><header>Constituencies · 650 seats</header><div class="body"><div class="searchbar"><input id="seatSearch" class="input" placeholder="Search constituency or region"><button id="randomSeat" class="btn">Random seat</button></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Seat</th><th>Region</th><th>Previous</th><th>Prediction</th><th>Status</th></tr></thead><tbody id="seatTable"></tbody></table></div></div></div><div class="control-card"><header>Selected Seat Control</header><div id="generalSeatForm" class="body"></div></div></div></section>
-      <section id="tab-councils" class="tab-pane"><div class="wide-grid"><div class="control-card"><header>Councils · 128</header><div class="body"><div class="searchbar"><input id="councilSearch" class="input" placeholder="Search council"><button id="randomCouncil" class="btn">Random council</button></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Council</th><th>Region</th><th>Previous</th><th>Prediction</th><th>Status</th></tr></thead><tbody id="councilTable"></tbody></table></div></div></div><div class="control-card"><header>Selected Council Control</header><div id="councilForm" class="body"></div></div></div></section>
-      <section id="tab-exitpoll" class="tab-pane"><div class="wide-grid"><div class="control-card"><header>Exit Poll Editor</header><div id="exitPollFull" class="body"></div></div><div class="control-card"><header>Countdown & Broadcast</header><div id="countdownControl" class="body"></div></div></div></section>
-      <section id="tab-presentation" class="tab-pane"><div class="wide-grid"><div class="control-card"><header>Presentation Slides</header><div id="managerFull" class="body"></div></div><div class="control-card"><header>Winner Call & History</header><div id="presentationExtras" class="body"></div></div></div></section>
-      <section id="tab-ticker" class="tab-pane"><div class="control-card"><header><span>Live Ticker</span><button id="addTickerFull" class="btn primary">+ Add Item</button></header><div id="tickerFull" class="body"></div></div></section>
-      <section id="tab-history" class="tab-pane"><div class="control-card"><header>Historical Chart Control</header><div id="historyControl" class="body"></div></div></section>
-      <section id="tab-system" class="tab-pane"><div class="wide-grid"><div class="control-card"><header>System</header><div class="body"><p><strong>Fresh rebuild v5.0</strong></p><p class="muted">Designed for GitHub Pages. Control room and presentation tabs sync instantly in the same browser using BroadcastChannel and localStorage.</p><button id="openPresentation" class="btn primary">Open Presentation</button> <button id="hardReset" class="btn danger">Reset All Election Data</button></div></div><div class="control-card"><header>Broadcast Notes</header><div class="body"><p>Recommended output: <strong>1920×1080</strong>.</p><p>For OBS or streaming software, add <code>index.html</code> as a browser source after publishing the repository.</p><p>Use <strong>control.html</strong> separately to operate the night.</p></div></div></div></section>
-    </main>
+
+<aside class="sidebar hex-bg">
+
+  <div class="brand">
+
+    <img
+      src="logo.svg"
+      alt="USHER Election Night"
+    >
+
   </div>
-</div><div id="toast" class="toast">Saved</div>
-<script src="data.js"></script><script src="core.js"></script><script src="control.js"></script>
-</body></html>
+
+  <button
+    class="nav-btn active"
+    data-tab="dashboard"
+  >
+    ▦ &nbsp; Dashboard
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="general"
+  >
+    ▣ &nbsp; General Election
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="councils"
+  >
+    ♟ &nbsp; Councils
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="exitpoll"
+  >
+    ▥ &nbsp; Exit Poll
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="presentation"
+  >
+    ▰ &nbsp; Presentation
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="ticker"
+  >
+    ▤ &nbsp; Ticker
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="history"
+  >
+    ◷ &nbsp; History
+  </button>
+
+  <button
+    class="nav-btn"
+    data-tab="system"
+  >
+    ⚙ &nbsp; System
+  </button>
+
+  <div class="sidebar-spacer"></div>
+
+  <div class="system-mini">
+
+    People<br>
+    Places<br>
+    Perspective
+
+    <br><br>
+
+    <span class="ok">
+      ● Live state connected
+    </span>
+
+    <br>
+
+    v5.0 fresh rebuild
+
+  </div>
+
+</aside>
+
+
+<div class="control-main">
+
+<header class="control-top">
+
+  <div class="logo-lockup">
+
+    <img
+      src="logo.svg"
+      alt=""
+    >
+
+    <div class="micro-slogan">
+      Production<br>
+      Control
+    </div>
+
+  </div>
+
+  <div class="sync-status">
+
+    <span class="sync-dot"></span>
+
+    LIVE SYNC
+
+  </div>
+
+  <div class="top-actions">
+
+    <button
+      id="previewBtn"
+      class="btn"
+    >
+      Preview
+    </button>
+
+    <button
+      id="goLiveBtn"
+      class="btn danger"
+    >
+      Go Live
+    </button>
+
+    <button
+      id="saveBtn"
+      class="btn"
+    >
+      Save
+    </button>
+
+    <button
+      id="resetBtn"
+      class="btn"
+    >
+      Reset
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="control-content">
+
+<section
+  id="tab-dashboard"
+  class="tab-pane active"
+>
+
+  <div
+    id="summaryGrid"
+    class="summary-grid"
+  ></div>
+
+  <div class="dashboard-grid">
+
+    <div class="control-card preview-card">
+
+      <header>
+
+        <span>
+          ● On Air &nbsp;
+          Live Presentation Preview
+        </span>
+
+        <span class="muted">
+          16:9 output
+        </span>
+
+      </header>
+
+      <div class="body">
+
+        <div
+          id="previewFrame"
+          class="preview-frame"
+        >
+
+          <iframe
+            src="index.html?embed=1&v=9"
+            title="Live presentation preview"
+          ></iframe>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Exit Poll · Edit
+      </header>
+
+      <div
+        id="dashboardPoll"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Constituency Declaration
+      </header>
+
+      <div
+        id="dashboardSeat"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Council Declaration
+      </header>
+
+      <div
+        id="dashboardCouncil"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Quick Actions
+      </header>
+
+      <div
+        class="body"
+        style="
+          display:grid;
+          grid-template-columns:
+          1fr 1fr;
+          gap:8px
+        "
+      >
+
+        <button
+          class="btn"
+          data-slide="break"
+        >
+          Take to Break
+        </button>
+
+        <button
+          class="btn"
+          data-slide="opening"
+        >
+          Opening
+        </button>
+
+        <button
+          class="btn"
+          data-slide="national"
+        >
+          National Map
+        </button>
+
+        <button
+          class="btn"
+          data-slide="results"
+        >
+          Results
+        </button>
+
+        <button
+          class="btn"
+          data-slide="history"
+        >
+          History
+        </button>
+
+        <button
+          class="btn danger"
+          data-slide="winner"
+        >
+          Winner Call
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-card ticker-editor">
+
+      <header>
+
+        <span>
+          Ticker Editor
+        </span>
+
+        <button
+          id="addTickerDash"
+          class="btn soft"
+        >
+          + Add Item
+        </button>
+
+      </header>
+
+      <div
+        id="tickerDash"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card presentation-manager">
+
+      <header>
+        Presentation Manager
+      </header>
+
+      <div
+        id="managerDash"
+        class="body"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-general"
+  class="tab-pane"
+>
+
+  <div class="wide-grid">
+
+    <div class="control-card">
+
+      <header>
+        Constituencies · 650 seats
+      </header>
+
+      <div class="body">
+
+        <div class="searchbar">
+
+          <input
+            id="seatSearch"
+            class="input"
+            placeholder="Search constituency or region"
+          >
+
+          <button
+            id="randomSeat"
+            class="btn"
+          >
+            Random seat
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table class="data-table">
+
+            <thead>
+
+              <tr>
+                <th>Seat</th>
+                <th>Region</th>
+                <th>Previous</th>
+                <th>Prediction</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="seatTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Selected Seat Control
+      </header>
+
+      <div
+        id="generalSeatForm"
+        class="body"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-councils"
+  class="tab-pane"
+>
+
+  <div class="wide-grid">
+
+    <div class="control-card">
+
+      <header>
+        Councils · 128
+      </header>
+
+      <div class="body">
+
+        <div class="searchbar">
+
+          <input
+            id="councilSearch"
+            class="input"
+            placeholder="Search council"
+          >
+
+          <button
+            id="randomCouncil"
+            class="btn"
+          >
+            Random council
+          </button>
+
+        </div>
+
+        <div class="table-wrap">
+
+          <table class="data-table">
+
+            <thead>
+
+              <tr>
+                <th>Council</th>
+                <th>Region</th>
+                <th>Previous</th>
+                <th>Prediction</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="councilTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Selected Council Control
+      </header>
+
+      <div
+        id="councilForm"
+        class="body"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-exitpoll"
+  class="tab-pane"
+>
+
+  <div class="wide-grid">
+
+    <div class="control-card">
+
+      <header>
+        Exit Poll Editor
+      </header>
+
+      <div
+        id="exitPollFull"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Countdown & Broadcast
+      </header>
+
+      <div
+        id="countdownControl"
+        class="body"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-presentation"
+  class="tab-pane"
+>
+
+  <div class="wide-grid">
+
+    <div class="control-card">
+
+      <header>
+        Presentation Slides
+      </header>
+
+      <div
+        id="managerFull"
+        class="body"
+      ></div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Winner Call & History
+      </header>
+
+      <div
+        id="presentationExtras"
+        class="body"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-ticker"
+  class="tab-pane"
+>
+
+  <div class="control-card">
+
+    <header>
+
+      <span>
+        Live Ticker
+      </span>
+
+      <button
+        id="addTickerFull"
+        class="btn primary"
+      >
+        + Add Item
+      </button>
+
+    </header>
+
+    <div
+      id="tickerFull"
+      class="body"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-history"
+  class="tab-pane"
+>
+
+  <div class="control-card">
+
+    <header>
+      Historical Chart Control
+    </header>
+
+    <div
+      id="historyControl"
+      class="body"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  id="tab-system"
+  class="tab-pane"
+>
+
+  <div class="wide-grid">
+
+    <div class="control-card">
+
+      <header>
+        System
+      </header>
+
+      <div class="body">
+
+        <p>
+          <strong>
+            Fresh rebuild v5.0
+          </strong>
+        </p>
+
+        <p class="muted">
+          Designed for GitHub Pages.
+          Control room and presentation
+          tabs sync instantly in the
+          same browser using
+          BroadcastChannel and
+          localStorage.
+        </p>
+
+        <button
+          id="openPresentation"
+          class="btn primary"
+        >
+          Open Presentation
+        </button>
+
+        <button
+          id="hardReset"
+          class="btn danger"
+        >
+          Reset All Election Data
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-card">
+
+      <header>
+        Broadcast Notes
+      </header>
+
+      <div class="body">
+
+        <p>
+          Recommended output:
+          <strong>
+            1920×1080
+          </strong>.
+        </p>
+
+        <p>
+          For OBS or streaming software,
+          add
+          <code>index.html</code>
+          as a browser source after
+          publishing the repository.
+        </p>
+
+        <p>
+          Use
+          <strong>
+            control.html
+          </strong>
+          separately to operate the night.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+</div>
+
+</div>
+
+<div
+  id="toast"
+  class="toast"
+>
+  Saved
+</div>
+
+<script src="data.js?v=9"></script>
+<script src="core.js?v=9"></script>
+<script src="control.js?v=9"></script>
+
+</body>
+
+</html>
